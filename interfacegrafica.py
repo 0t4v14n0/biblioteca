@@ -4,6 +4,7 @@ from bancodedados import ConexaoBancoDeDados
 import random
 
 class meuapp:
+
     def __init__(self,root):
 
         self.root = root
@@ -20,6 +21,7 @@ class meuapp:
         self.img_botaodevolucao  = PhotoImage(file="BIBLIOTECA/devolucao.png")
         self.img_botaoemprestimo = PhotoImage(file="BIBLIOTECA/emprestimo.png")
 
+        self.imgsai= PhotoImage(file="BIBLIOTECA/botaosair.png")
 
         self.root.geometry("500x500")
         self.root.iconbitmap(default="BIBLIOTECA/icone.ico")
@@ -41,6 +43,9 @@ class meuapp:
 
         botao = tk.Button(root,bd=0,image=self.img_botaodevolucao,command=self.devolucao)
         botao.place(x=50,y=354,width=177,height=40)
+
+        sair = tk.Button(root,bd=0,image=self.imgsai,command=root.destroy)
+        sair.place(x=50,y=430,width=120,height=40)
 
 #-----------------------------------DIMENSIONA OUTRAS JANELAS-----------------------------------------
 
@@ -68,6 +73,9 @@ class meuapp:
         repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         repesq.place(width=392,height=45, x=50, y= 128)
 
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=420,width=120,height=40)
+
 #------------------------RECEBE OS VALORES E MANDA PARA FAZER O CADASTRO----------------------------
 
     def get_Livro(self):
@@ -86,9 +94,12 @@ class meuapp:
 
         id = random.randrange(1,99)
 
-        return ConexaoBancoDeDados.cadastrar_Livro(id,nome,genero,autor,ano)
+        leva=[id,nome,autor,genero,ano]
 
-    #---------------------------------CADASTRO DE LIVRO----------------------------------------------
+        return ConexaoBancoDeDados.cadastrar_Livro(leva)
+
+#---------------------------------CADASTRO DE LIVRO----------------------------------------------
+
     def cadastrolivro(self):
 
         self.janela_dimensionada("CADASTRO LIVRO","BIBLIOTECA/3.png")
@@ -105,10 +116,15 @@ class meuapp:
         self.repesq4 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         self.repesq4.place(width=300,height=40, x=100, y= 380)
 
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=450,width=120,height=40)
+
         self.imacadas = PhotoImage(file="BIBLIOTECA/botaocadastrar.png") 
 
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Livro)
         botaocada.place(x=330,y=450,width=120,height=40)
+
+#------------------------------RECEBE OS VALORES DO CADASTRO DE AUTORES----------------------------------
 
     def get_Autor(self):
         
@@ -121,34 +137,70 @@ class meuapp:
         bio = self.repesq3.get()
         self.repesq3.delete(0, tk.END)
 
-        return ConexaoBancoDeDados.cadastrar_Autor(nome,ano,bio)
+        leva = nome,ano,bio
+
+        return ConexaoBancoDeDados.cadastrar_Autor(leva)
 
 #------------------------------------CADASTRO AUTOR--------------------------------------------------
 
     def cadastroaltor(self):
+
         self.janela_dimensionada("CADASTRO ALTOR","BIBLIOTECA/4.png")
 
-        repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
-        repesq.place(width=300,height=40, x=100, y= 128)
+        self.repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        self.repesq.place(width=300,height=40, x=100, y= 128)
         
-        repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
-        repesq2.place(width=300,height=40, x=100, y= 222)
+        self.repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        self.repesq2.place(width=300,height=40, x=100, y= 222)
 
-        repesq3 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
-        repesq3.place(width=300,height=137, x=100, y= 310)
+        self.repesq3 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        self.repesq3.place(width=300,height=137, x=100, y= 310)
+
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=60,y=450,width=120,height=40)
+
+        self.imacadas = PhotoImage(file="BIBLIOTECA/botaocadastrar.png") 
 
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Autor)
-        botaocada.place(x=330,y=450,width=120,height=40)
+        botaocada.place(x=320,y=450,width=120,height=40)
+
+#----------------------------------CADASTRAR PESSOA-------------------------------------------------
+
+    def empres(self):
+
+        print("ola")
+
+#----------------------------------EMPRESTAR LIVRO-------------------------------------------------
+
+    def cadaspe(self0):
+
+        print("ola")
 
 #-----------------------------------EMPRESTIMO------------------------------------------------------
 
     def emprestimo(self):
+
         self.janela_dimensionada("EMPRESTIMO","BIBLIOTECA/5.png")
+
+        self.botao1 = PhotoImage(file="BIBLIOTECA/jacd.png")
+        self.botao2 = PhotoImage(file="BIBLIOTECA/cadasg.png")
+
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=420,width=120,height=40)
+
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.botao1, command= self.empres)
+        botaocada.place(x=182,y=143,width=136,height=90)
+
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.botao2, command= self.cadaspe)
+        botaocada.place(x=182,y=294,width=136,height=90)
 
 #----------------------------------DEVOLUCAO-------------------------------------------------------
 
     def devolucao(self):
         self.janela_dimensionada("DEVOLUCAO","BIBLIOTECA/8.png")
+
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=420,width=120,height=40)
 
 
 if __name__ == "__main__":
