@@ -164,17 +164,76 @@ class meuapp:
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Autor)
         botaocada.place(x=320,y=450,width=120,height=40)
 
+#---------------------------------------GET_EMPRESTADO--------------------------------------------------
+
+    def get_Empresta(self):
+
+        codu = self.repesq.get()
+        self.repesq.delete(0, tk.END)
+
+        codl = int(self.repesq2.get())
+        self.repesq2.delete(0, tk.END)
+
+        leva = codu,codl
+
+        return ConexaoBancoDeDados.cadastrar_Pessoa(leva)
+    
 #----------------------------------CADASTRAR PESSOA-------------------------------------------------
 
     def empres(self):
 
-        print("ola")
+        self.janela_dimensionada("CADASTRO","BIBLIOTECA/6.png")
 
-#----------------------------------EMPRESTAR LIVRO-------------------------------------------------
+        repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq.place(width=392,height=45, x=50, y= 200)
 
-    def cadaspe(self0):
+        repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq2.place(width=392,height=45, x=50, y= 300)
 
-        print("ola")
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=420,width=120,height=40)
+
+        self.empresta = PhotoImage(file="BIBLIOTECA/botaoemprestar.png")
+
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Empresta)
+        botaocada.place(x=330,y=420,width=120,height=40)
+
+#---------------------------------------GET_PESSOA--------------------------------------------------
+
+    def get_Pessoa(self):
+
+        nome = self.repesq.get()
+        self.repesq.delete(0, tk.END)
+
+        cpf = int(self.repesq2.get())
+        self.repesq2.delete(0, tk.END)
+
+        id = random.randrange(1,99)
+
+        leva = id,nome,cpf
+
+        return ConexaoBancoDeDados.cadastrar_Pessoa(leva)
+
+#----------------------------------CADASTRO PESSOA-------------------------------------------------
+
+    def cadaspe(self):
+
+        self.janela_dimensionada("CADASTRO","BIBLIOTECA/7.png")
+
+        repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq.place(width=392,height=45, x=50, y= 200)
+
+        repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq2.place(width=392,height=45, x=50, y= 300)
+
+        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
+        sair.place(x=50,y=420,width=120,height=40)
+
+        self.empresta = PhotoImage(file="BIBLIOTECA/botaoemprestar.png")
+
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Pessoa)
+        botaocada.place(x=330,y=420,width=120,height=40)
+
 
 #-----------------------------------EMPRESTIMO------------------------------------------------------
 
@@ -197,11 +256,11 @@ class meuapp:
 #----------------------------------DEVOLUCAO-------------------------------------------------------
 
     def devolucao(self):
+
         self.janela_dimensionada("DEVOLUCAO","BIBLIOTECA/8.png")
 
         sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
         sair.place(x=50,y=420,width=120,height=40)
-
 
 if __name__ == "__main__":
 
