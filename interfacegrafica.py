@@ -10,11 +10,13 @@ class meuapp:
         self.root = root
         self.root.title("Biblioteca")
 
+        #--------------------IMAGENS DE FUNDO----------------------------------
         self.img_menuprincipal   = PhotoImage(file="BIBLIOTECA/1.png")
         self.img_menucadtrouser  = PhotoImage(file="BIBLIOTECA/5.png")
         self.img_menucadtrouser2 = PhotoImage(file="BIBLIOTECA/6.png")
         self.img_menucadtrouser3 = PhotoImage(file="BIBLIOTECA/7.png")
 
+        #--------------------IMAGNES BOTOES------------------------------------
         self.img_botaopesquisa   = PhotoImage(file="BIBLIOTECA/pesquisa.png")
         self.img_botaocadastroa  = PhotoImage(file="BIBLIOTECA/cadastroa.png")
         self.img_botaocadastrol  = PhotoImage(file="BIBLIOTECA/cadastrol.png")
@@ -164,7 +166,7 @@ class meuapp:
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Autor)
         botaocada.place(x=320,y=450,width=120,height=40)
 
-#---------------------------------------GET_EMPRESTADO--------------------------------------------------
+#-----------------------------------GET_EMPRESTADO----------------------------------------------------
 
     def get_Empresta(self):
 
@@ -177,7 +179,7 @@ class meuapp:
         leva = codu,codl
 
         return ConexaoBancoDeDados.cadastrar_Pessoa(leva)
-    
+
 #----------------------------------CADASTRAR PESSOA-------------------------------------------------
 
     def empres(self):
@@ -234,7 +236,6 @@ class meuapp:
         botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Pessoa)
         botaocada.place(x=330,y=420,width=120,height=40)
 
-
 #-----------------------------------EMPRESTIMO------------------------------------------------------
 
     def emprestimo(self):
@@ -261,6 +262,8 @@ class meuapp:
 
         sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
         sair.place(x=50,y=420,width=120,height=40)
+
+#--------------------------------------------MAIN-------------------------------------------------
 
 if __name__ == "__main__":
 
