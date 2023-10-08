@@ -254,14 +254,29 @@ class meuapp:
         botaocada = tk.Button(self.novajanela,bd=0,image=self.botao2, command= self.cadaspe)
         botaocada.place(x=182,y=294,width=136,height=90)
 
+
+#--------------------------------GET_Devolucao-----------------------------------------------------
+
+    def get_Devolucao(self):
+        print
+
 #----------------------------------DEVOLUCAO-------------------------------------------------------
 
     def devolucao(self):
 
         self.janela_dimensionada("DEVOLUCAO","BIBLIOTECA/8.png")
 
+        repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq.place(width=392,height=45, x=50, y= 200)
+
+        repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        repesq2.place(width=392,height=45, x=50, y= 300)
+
         sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
         sair.place(x=50,y=420,width=120,height=40)
+        
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Devolucao)
+        botaocada.place(x=330,y=420,width=120,height=40)
 
 #--------------------------------------------MAIN-------------------------------------------------
 
