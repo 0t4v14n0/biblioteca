@@ -70,6 +70,11 @@ class meuapp:
 
 #----------------------------------------PESQUISA---------------------------------------------------
 
+    def get_Pesquisa():
+        print
+
+#----------------------------------------PESQUISA---------------------------------------------------
+
     def pesquisa(self):
         self.janela_dimensionada("PESQUISA","BIBLIOTECA/2.png")
         repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
