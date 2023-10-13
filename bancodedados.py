@@ -2,7 +2,8 @@ import sqlite3
 
 class ConexaoBancoDeDados:
 
-    #def pesquisa():
+    def pesquisa():
+        print
 
     def cadastrar_Livro(leva):
 
@@ -34,6 +35,26 @@ class ConexaoBancoDeDados:
         id,nome,cpf = leva
 
         c.execute("INSERT INTO Pessoa (nome,cpf,id) VALUES (?,?,?)",(nome,cpf,id))
+        conn.commit()
+
+        conn.close()
+
+    def pegar_emprestado(leva):
+
+        try:
+            print("deu")
+
+        except:
+            print("erro")
+
+    def devolver():
+
+        conn = sqlite3.connect('meu_banco_de_dados.db')
+        c = conn.cursor()
+
+        codl,cpf = leva
+
+        c.execute("",())
         conn.commit()
 
         conn.close()
