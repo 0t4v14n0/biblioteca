@@ -23,28 +23,42 @@ class meuapp:
         self.img_botaodevolucao  = PhotoImage(file="BIBLIOTECA/devolucao.png")
         self.img_botaoemprestimo = PhotoImage(file="BIBLIOTECA/emprestimo.png")
         self.imgsai              = PhotoImage(file="BIBLIOTECA/botaosair.png")
+        self.imgpesquisa         = PhotoImage(file="BIBLIOTECA/botaoPESQUISAR.png")
+        self.imgempresta         = PhotoImage(file="BIBLIOTECA/botaoemprestar.png")
+        self.imacadas            = PhotoImage(file="BIBLIOTECA/botaocadastrar.png")
+        self.botaovolta          = PhotoImage(file="BIBLIOTECA/botaovolta.png")
+        self.imgdevolucao         = PhotoImage(file="BIBLIOTECA/botaodevolucao.png")
+        self.botao1              = PhotoImage(file="BIBLIOTECA/jacd.png")
+        self.botao2              = PhotoImage(file="BIBLIOTECA/cadasg.png")
 
+        #--------------------CRIAÇAOO PRIMEIRA JANELA---------------------------
         self.root.geometry("500x500")
         self.root.iconbitmap(default="BIBLIOTECA/icone.ico")
         self.root.resizable(width=1,height=1)
         self.labelfundo = tk.Label(root, image=self.img_menuprincipal)
         self.labelfundo.pack()
 
+        #--------------------------BOTAO PESQUISA-------------------------------
         botao = tk.Button(root,bd=0,image=self.img_botaopesquisa,command=self.pesquisa)
         botao.place(x=50,y=117,width=177,height=40)
 
+        #-------------------BOTAO CADASTRAR LIVRO-------------------------------
         botao = tk.Button(root,bd=0,image=self.img_botaocadastrol,command=self.cadastrolivro)
         botao.place(x=50,y=177,width=177,height=40)
 
+        #-------------------BOTAO CADASTRAR ALTOR-------------------------------
         botao = tk.Button(root,bd=0,image=self.img_botaocadastroa,command=self.cadastroaltor)
         botao.place(x=50,y=236,width=177,height=40)
 
+        #-------------------BOTAO EMPRESTIMO------------------------------------
         botao = tk.Button(root,bd=0,image=self.img_botaoemprestimo,command=self.emprestimo)
         botao.place(x=50,y=295,width=177,height=40)
 
+        #--------------------BOTAO DEVOLUCAO------------------------------------
         botao = tk.Button(root,bd=0,image=self.img_botaodevolucao,command=self.devolucao)
         botao.place(x=50,y=354,width=177,height=40)
 
+        #----------------------BOTAO SAIR---------------------------------------
         sair = tk.Button(root,bd=0,image=self.imgsai,command=root.destroy)
         sair.place(x=50,y=430,width=120,height=40)
 
@@ -69,8 +83,12 @@ class meuapp:
 
 #----------------------------------------PESQUISA---------------------------------------------------
 
-    def get_Pesquisa():
-        print
+    def get_Pesquisa(self):
+
+        codu = self.repesq.get()
+        self.repesq.delete(0, tk.END)
+
+        return ConexaoBancoDeDados.pesquisa(codu)
 
 #----------------------------------------PESQUISA---------------------------------------------------
 
@@ -78,9 +96,12 @@ class meuapp:
         self.janela_dimensionada("PESQUISA","BIBLIOTECA/2.png")
         repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         repesq.place(width=392,height=45, x=50, y= 128)
+ 
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.imgpesquisa, command= self.get_Pesquisa)
+        botaocada.place(x=320,y=455,width=120,height=40)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=420,width=120,height=40)
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=60,y=455,width=120,height=40) 
 
 #------------------------RECEBE OS VALORES E MANDA PARA FAZER O CADASTRO----------------------------
 
@@ -122,10 +143,8 @@ class meuapp:
         self.repesq4 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         self.repesq4.place(width=300,height=40, x=100, y= 380)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=450,width=120,height=40)
-
-        self.imacadas = PhotoImage(file="BIBLIOTECA/botaocadastrar.png") 
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=50,y=450,width=120,height=40)
 
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Livro)
         botaocada.place(x=330,y=450,width=120,height=40)
@@ -162,10 +181,8 @@ class meuapp:
         self.repesq3 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         self.repesq3.place(width=300,height=137, x=100, y= 310)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=60,y=450,width=120,height=40)
-
-        self.imacadas = PhotoImage(file="BIBLIOTECA/botaocadastrar.png") 
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=60,y=455,width=120,height=40)
 
         botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Autor)
         botaocada.place(x=320,y=450,width=120,height=40)
@@ -184,7 +201,7 @@ class meuapp:
 
         return ConexaoBancoDeDados.cadastrar_Pessoa(leva)
 
-#----------------------------------CADASTRAR PESSOA-------------------------------------------------
+#-----------------------------------------EMPRESTAR--------------------------------------------------
 
     def empres(self):
 
@@ -196,12 +213,10 @@ class meuapp:
         repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         repesq2.place(width=392,height=45, x=50, y= 300)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=420,width=120,height=40)
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=50,y=420,width=120,height=40)
 
-        self.empresta = PhotoImage(file="BIBLIOTECA/botaoemprestar.png")
-
-        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Empresta)
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.imgempresta, command= self.get_Empresta)
         botaocada.place(x=330,y=420,width=120,height=40)
 
 #---------------------------------------GET_PESSOA--------------------------------------------------
@@ -232,12 +247,10 @@ class meuapp:
         repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         repesq2.place(width=392,height=45, x=50, y= 300)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=420,width=120,height=40)
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=50,y=420,width=120,height=40)
 
-        self.empresta = PhotoImage(file="BIBLIOTECA/botaoemprestar.png")
-
-        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Pessoa)
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.imacadas, command= self.get_Pessoa)
         botaocada.place(x=330,y=420,width=120,height=40)
 
 #-----------------------------------EMPRESTIMO------------------------------------------------------
@@ -246,11 +259,8 @@ class meuapp:
 
         self.janela_dimensionada("EMPRESTIMO","BIBLIOTECA/5.png")
 
-        self.botao1 = PhotoImage(file="BIBLIOTECA/jacd.png")
-        self.botao2 = PhotoImage(file="BIBLIOTECA/cadasg.png")
-
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=420,width=120,height=40)
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=50,y=420,width=120,height=40)
 
         botaocada = tk.Button(self.novajanela,bd=0,image=self.botao1, command= self.empres)
         botaocada.place(x=182,y=143,width=136,height=90)
@@ -284,10 +294,10 @@ class meuapp:
         repesq2 = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
         repesq2.place(width=392,height=45, x=50, y= 300)
 
-        sair = tk.Button(self.novajanela,bd=0,image=self.imgsai,command=self.novajanela.destroy)
-        sair.place(x=50,y=420,width=120,height=40)
+        volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
+        volta.place(x=50,y=420,width=120,height=40)
         
-        botaocada = tk.Button(self.novajanela,bd=0,image=self.empresta, command= self.get_Devolucao)
+        botaocada = tk.Button(self.novajanela,bd=0,image=self.imgdevolucao, command= self.get_Devolucao)
         botaocada.place(x=330,y=420,width=120,height=40)
 
 #--------------------------------------------MAIN-------------------------------------------------
