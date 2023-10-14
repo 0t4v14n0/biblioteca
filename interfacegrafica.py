@@ -22,8 +22,7 @@ class meuapp:
         self.img_botaocadastrol  = PhotoImage(file="BIBLIOTECA/cadastrol.png")
         self.img_botaodevolucao  = PhotoImage(file="BIBLIOTECA/devolucao.png")
         self.img_botaoemprestimo = PhotoImage(file="BIBLIOTECA/emprestimo.png")
-
-        self.imgsai= PhotoImage(file="BIBLIOTECA/botaosair.png")
+        self.imgsai              = PhotoImage(file="BIBLIOTECA/botaosair.png")
 
         self.root.geometry("500x500")
         self.root.iconbitmap(default="BIBLIOTECA/icone.ico")
@@ -259,11 +258,19 @@ class meuapp:
         botaocada = tk.Button(self.novajanela,bd=0,image=self.botao2, command= self.cadaspe)
         botaocada.place(x=182,y=294,width=136,height=90)
 
-
 #--------------------------------GET_Devolucao-----------------------------------------------------
 
     def get_Devolucao(self):
-        print
+         
+        codl = self.repesq.get()
+        self.repesq.delete(0, tk.END)
+
+        cpf = int(self.repesq2.get())
+        self.repesq2.delete(0, tk.END)
+
+        leva = codl,cpf
+
+        return ConexaoBancoDeDados.cadastrar_Pessoa(leva)
 
 #----------------------------------DEVOLUCAO-------------------------------------------------------
 
