@@ -28,8 +28,8 @@ class meuapp:
         self.imacadas            = PhotoImage(file="BIBLIOTECA/botaocadastrar.png")
         self.botaovolta          = PhotoImage(file="BIBLIOTECA/botaovolta.png")
         self.imgdevolucao         = PhotoImage(file="BIBLIOTECA/botaodevolucao.png")
-        self.botao1              = PhotoImage(file="BIBLIOTECA/jacd.png")
-        self.botao2              = PhotoImage(file="BIBLIOTECA/cadasg.png")
+        self.botao1              = PhotoImage (file="BIBLIOTECA/jacd.png")
+        self.botao2              = PhotoImage (file="BIBLIOTECA/cadasg.png")
 
         #--------------------CRIAÇAOO PRIMEIRA JANELA---------------------------
         self.root.geometry("500x500")
@@ -85,20 +85,24 @@ class meuapp:
 
     def get_Pesquisa(self):
 
-        codu = self.repesq.get()
+        nome = self.repesq.get()
         self.repesq.delete(0, tk.END)
 
-        return ConexaoBancoDeDados.pesquisa(codu)
+        leva = nome
+
+        return ConexaoBancoDeDados.pesquisa(leva)
 
 #----------------------------------------PESQUISA---------------------------------------------------
 
     def pesquisa(self):
+
         self.janela_dimensionada("PESQUISA","BIBLIOTECA/2.png")
-        repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
-        repesq.place(width=392,height=45, x=50, y= 128)
+
+        self.repesq = Entry(self.novajanela, bd=2, font=("Calibre", 15), justify=CENTER)
+        self.repesq.place(width=392,height=45, x=50, y= 128)
  
-        botaocada = tk.Button(self.novajanela,bd=0,image=self.imgpesquisa, command= self.get_Pesquisa)
-        botaocada.place(x=320,y=455,width=120,height=40)
+        self.botaocada = tk.Button(self.novajanela,bd=0,image=self.imgpesquisa, command= self.get_Pesquisa)
+        self.botaocada.place(x=320,y=455,width=120,height=40)
 
         volta = tk.Button(self.novajanela,bd=0,image=self.botaovolta,command=self.novajanela.destroy)
         volta.place(x=60,y=455,width=120,height=40) 
