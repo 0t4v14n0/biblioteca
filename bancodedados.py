@@ -20,7 +20,6 @@ class ConexaoBancoDeDados:
                         print("encontrado")
                     else:
                         print("não encontrado")
-
             conn.close()
 
         except sqlite3.Error as e:
@@ -30,7 +29,6 @@ class ConexaoBancoDeDados:
     def cadastrar_Livro(leva):
 
         try:
-
             id,nome,autor,genero,ano = leva
             conn = sqlite3.connect('meu_banco_de_dados.db')
             c = conn.cursor()
@@ -39,13 +37,12 @@ class ConexaoBancoDeDados:
             conn.close()
 
         except sqlite3.Error as e:
-            
+
             print(f"Erro de banco de dados: {e}")
 
     def cadastrar_Autor(leva):
 
         try:
-
             nome,ano,bio=leva
             conn = sqlite3.connect('meu_banco_de_dados.db')
             c = conn.cursor()
@@ -60,7 +57,6 @@ class ConexaoBancoDeDados:
     def cadastrar_Pessoa(leva):
 
         try:
-            
             conn = sqlite3.connect('meu_banco_de_dados.db')
             c = conn.cursor()
             id,nome,cpf = leva
@@ -84,7 +80,6 @@ class ConexaoBancoDeDados:
     def devolver(leva):
 
         try:
-
             conn = sqlite3.connect('meu_banco_de_dados.db')
             c = conn.cursor()
 
